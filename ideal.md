@@ -238,7 +238,7 @@ Although the impact is generally minimal, having an excessive number of small co
 
 # An ideal component has minimal surface area
 
-Surface area is what you need to know to effectively use the component.  The heuristic  “An ideal component limits its number of required props” you would be 90% there, but other factors make up the last 10%. 
+Surface area is what you need to know to effectively use the component.  Limiting required props almost covers this attribute, but be aware of other factors.
 
 ### How to detect large surface area:
 
