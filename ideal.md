@@ -10,36 +10,27 @@ Effective standards should not merely impose constraints; they should also serve
 
 ## Attributes of an ideal react component:
 
-### An ideal react component is too small to fail.
+* ### [An ideal react component is too small to fail](https://github.com/afrievalt/best-practices-react/blob/main/ideal.md#an-ideal-component-has-minimal-surface-area)
 
-### An ideal react component has a minimal surface area.
+* ### [An ideal react component has a minimal surface area.](https://github.com/afrievalt/best-practices-react/blob/main/ideal.md#an-ideal-component-has-minimal-surface-area)
 
-Learn more coming soon.
 
-### An ideal react component is free of logic.
+* ### An ideal react component is free of logic.
 
-Learn more coming soon.
 
-### An ideal react component has a clear separation between js and jsx.
+* ### An ideal react component has a clear separation between js and jsx.
 
 [Mise en place your code](https://www.notion.so/Mise-en-place-your-code-and-make-fewer-mistakes-eeee1afc6dc64438a6cf39e70cc09b5f?pvs=21)
 Learn more coming soon.  
 
-### An ideal react component has jsx that resembles simple html.
+* ### An ideal react component has jsx that resembles simple html.
 
-Learn more coming soon.
+* ### An ideal component is adaptable.
 
-### An ideal component is adaptable.
+* ### An ideal component is composable.
 
-Learn more coming soon.
+* ### It is fine to pragmatically violate the above rules a few times.
 
-### An ideal component is composable.
-
-Learn more coming soon.
-
-### It is fine to pragmatically violate the above rules a few times.
-
-Learn more coming soon.
 
 # An Ideal React Component is too small to fail.
 
@@ -51,7 +42,7 @@ It is easy to detect large component.  If the file is over 120 lines, its too bi
 
 ### Tips for Achieving Small React Components:
 
-1. **Discipline:**
+#### 1. **Discipline:**
 Stick to the routine and discipline of keeping your components small.  During the discovery phase,  do whatever it takes to accomplishing the task, but before publishing, take the time and make is smaller.  Make this part of your code reviews.  It is much easier to remove 20 lines from a component than removing 800 lines.    
 
 > I apologize for such a long letter - I didn't have time to write a short one.
@@ -65,9 +56,9 @@ Stick to the routine and discipline of keeping your components small.  During th
 >  ― **Blaise Pascal**
 > 
 
-2. **Decomposition:**
+#### 2. **Decomposition:**
 Break down larger components into smaller ones by identifying discrete functionalities and UI sections. If a component goes over the 60 lines, consider whether it can be decomposed into smaller, more manageable parts.   See [atomic design](https://atomicdesign.bradfrost.com/) and  and [thinking in react.](https://react.dev/learn/thinking-in-react#step-1-break-the-ui-into-a-component-hierarchy)  Composition is  key attribute of both functional programming and React.   
-3. **Don’t repeat yourself (DRY):**
+#### 3. **Don’t repeat yourself (DRY):**
 
 ```jsx
 // ⛔ Don't repeat yourself
@@ -141,14 +132,14 @@ function Footer() {
 }
 ```
 
-4. **Jettison Code**
+#### 4. **Jettison Code**
 Anything that can be removed from a component, should be removed from a component.  This includes static values, unreachable code, and functions that don’t use closure.     
 
 ```jsx
-// ⛔ remove static values, unreachabel code, and 
-//   funtions witout closure
+// ⛔ remove static values, unreachable code, and 
+//   functions without closure
 function Strange({headCount}) {
-  const MAX_CAPACITY = 250;  // ⛔static value
+  const MAX_CAPACITY = 250;  // ⛔ static value
   const getIsOverCapacity = (count) => { // ⛔ function without closure
     MAX_CAPACITY > count;
   }
@@ -179,11 +170,11 @@ function Strange({headCount}) {
 }
 ```
 
-5. **Remove Logic from components:**
+#### 5. **Remove Logic from components:**
 This will be expounded on in a future post.
-6. **Build custom hooks**
+#### 6. **Build custom hooks**
 Hooks are a powerful feature, but can easily bloat component size.  Solution: move the bloated code into a custom hook.  This habit has a secondary benefit of discovering opportunities for code reuse.
-7. **Remove Features**
+#### 7. **Remove Features**
 Not always an option, but very effective.  Many concepts in building an ideal component can be summarized in the concept “optimize for deletion”.  Be very comfortable in removing code swiftly.      
 
 > Perfection is achieved, not when there is nothing more to add, but when there is nothing left to take away.
@@ -191,7 +182,7 @@ Not always an option, but very effective.  Many concepts in building an ideal co
 > 
 >  ― **Antoine de Saint-Exupéry** 
 > 
-8. **Avoid cut and past coding.**  
+#### 8. **Avoid cut and past coding.**  
 We are all guilty of if, but avoid copying sections of your code base and pasting it elsewhere.  A better  options is to use tools like [snippet generator](https://snippet-generator.app/?description=&tabtrigger=&snippet=&mode=vscode) or [plop](https://plopjs.com/documentation/) to create starter boiler plate code.  These tools make it easy to do the right thing.   
 When copying code from Stack Overflow you completely understand it.  Code generated by Figma or your favorite AI tool should be refactored to fit your coding standards.   
 
@@ -238,21 +229,21 @@ Although the impact is generally minimal, having an excessive number of small co
 
 # An ideal component has minimal surface area
 
-Surface area is what you need to know to effectively use the component.  Limiting required props almost covers this attribute, but be aware of other factors.
+Surface area is what you need to know to effectively use the component.  
 
 ### How to detect large surface area:
 
-Detecting components with a large surface is not that difficult, but defining a rule is.  Its not as simple as setting an upper limit of properties.  First, not all properties add to the surface area equally.  See use simple types.   Also some components like form and table and mandate ton of properties.  Our objective is minimize them.
+Detecting components with a large surface is not that difficult, but defining a rule is.  Its not as simple as setting an upper limit on required properties.  First, not all properties add to the surface area equally.  See use simple types. Also, some components like forms and tables demand a ton of properties. Our objective is to minimize them.
 
 ### Tools and techniques for reducing surface area:
 
-1. **Avoid prop drilling**
+#### 1. **Avoid prop drilling:**
 
 There is a plethora of [blogs on this topic](
 https://www.freecodecamp.org/news/avoid-prop-drilling-in-react/), if you don’t know how to avoid this, please review some of them.
 
 
-2. **Use composition and  the children prop.**
+#### 2. **Use composition and  the children prop:**
 
 ```jsx
 // ⛔ icon, iconPosition, and label are 
@@ -299,15 +290,15 @@ function Footer() {
 }
 ```
 
-3.  **Have a good naming convention**
+#### 3.  **Have a good naming convention:**
 
-Poorly named props can unexpectedly increase the surface area.  Avoid ambiguous names like data, list, items, or single letters.  Use conventions like booleans begin with is and user action callbacks begin with on
+Have a good naming convention. Poorly named props can unexpectedly increase the surface area. Avoid ambiguous names like "data", "list", "items", or single letters. Use conventions like booleans beginning with "is" and user action callbacks beginning with "on".
 
-4. **Document your props**
+#### 4. **Inject values:**
 
-Document your props with typescript or jDoc
+Inject values with useSelector (Redux), useContext, useParams (React-Router) or other hooks.
 
-5. **Use simple values**
+#### 5. **Use simple values:**
 
 Prefer props with simple, primitive values.  Avoid parsing.  It is easier to compose simple values than parse strings that contain data structures.     
 
