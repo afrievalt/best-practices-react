@@ -236,7 +236,7 @@ Surface area is what you need to know to effectively use the component.
 
 Detecting components with a large surface is not that difficult, but defining a rule is. Its not as simple as setting an upper limit on required properties. First, not all properties add to the surface area equally. See [use simple types](https://github.com/afrievalt/best-practices-react/blob/main/ideal.md#an-ideal-component-has-minimal-surface-area). Also, some components like forms and tables demand a ton of properties. Our objective is to minimize them.
 
-### Tools and techniques for reducing surface area:
+### Tips for reducing surface area:
 
 #### 1. **Avoid prop drilling:**
 
@@ -307,7 +307,7 @@ function Size(props) {
   // 🚫 Avoid Parsing
   const [width, height] = dimensions.split("x");
   const unitSymbol = width.at(-1);
-  const unit = unistLookup[unitSymbol];
+  const unit = unitLookup[unitSymbol];
 ```
 
 ```jsx
@@ -323,3 +323,5 @@ If you need to parse you might need to [identified the minimal state](https://le
 #### 6. Use Default values:
 
 Default values allow you to increase flexibility without increasing the surface area. Default values can nudge developers to do the right thing. They also allow developers to experiment with faster feedback.
+
+# An ideal component is free of logic   
