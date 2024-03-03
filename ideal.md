@@ -324,4 +324,33 @@ If you need to parse you might need to [identified the minimal state](https://le
 
 Default values allow you to increase flexibility without increasing the surface area. Default values can nudge developers to do the right thing. They also allow developers to experiment with faster feedback.
 
-# An ideal component is free of logic   
+## An ideal react component has minimal logic.
+
+Many component are littered with unnecessary logic. 
+
+Please note, many tips listed don’t reduce cyclomatic complexity, but reduce cognitive complexity in the component.
+
+### Tips for removing component logic.
+
+#### 1. ** Avoid empty checks: **
+
+Many checks for empty strings are empty arrays are unnecessary because they have no effect on  what the end user will see. 
+
+#### 2. **use lookup tables:***
+
+many “if then else” and “switch” statements can be replaced with lookup tables.  A lookup table is  simply an object literal
+#### 3. **Move the logic outside the component.**
+
+build a library of utility functions.  
+
+##### 4. **Use selectors:**
+[Selectors](https://redux.js.org/usage/deriving-data-selectors) can transform the data you have into the data you need.  Selectors are most often associated with Redux but don’t require it. 
+
+##### 5. ***Use CSS***
+
+Deep understating off css can eliminate JavaScript logic. 
+
+#### 6. **Avoid parsing**
+
+[Use simple values](https://github.com/afrievalt/best-practices-react/blob/main/ideal.md#5-use-simple-values) that don't require parsing.  
+
