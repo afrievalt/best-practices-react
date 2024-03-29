@@ -14,9 +14,9 @@ Effective standards should not merely impose constraints; they should also serve
 
 - ### [An ideal react component has a minimal surface area.](https://github.com/afrievalt/best-practices-react/blob/main/ideal.md#an-ideal-component-has-minimal-surface-area)
 
-- ### An ideal react component is free of logic.
+- ### [An ideal react component has minimal logic.](https://github.com/afrievalt/best-practices-react/blob/main/ideal.md#an-ideal-react-component-has-minimal-logic)
 
-- ### An ideal react component has a clear separation between js and jsx.
+- ### An ideal react component has a clear separation between JavaScript and JSX.
 
 [Mise en place your code](https://www.notion.so/Mise-en-place-your-code-and-make-fewer-mistakes-eeee1afc6dc64438a6cf39e70cc09b5f?pvs=21)
 Learn more coming soon.
@@ -320,7 +320,7 @@ function Size(props) {
 If you need to parse you might need to [identified the minimal state](https://legacy.reactjs.org/docs/thinking-in-react.html#step-3-identify-the-minimal-but-complete-representation-of-ui-state). See
 [Value of Values](https://www.infoq.com/presentations/Value-Values/) for a deeper dive.
 
-#### 6. Use Default values:
+#### 6. **Use Default values:**
 
 Default values allow you to increase flexibility without increasing the surface area. Default values can nudge developers to do the right thing. They also allow developers to experiment with faster feedback.
 
@@ -332,25 +332,29 @@ Please note, many tips listed don’t reduce cyclomatic complexity, but reduce c
 
 ### Tips for removing component logic.
 
-#### 1. ** Avoid empty checks: **
+#### 1. **Avoid empty checks:**
 
-Many checks for empty strings are empty arrays are unnecessary because they have no effect on  what the end user will see. 
+Many checks for empty strings or empty arrays are unnecessary because they have no effect on  what the end user will see. 
 
-#### 2. **use lookup tables:***
+#### 2. **Use lookup tables:***
 
-many “if then else” and “switch” statements can be replaced with lookup tables.  A lookup table is  simply an object literal
+Many “if then else” and “switch” statements can be replaced with lookup tables.  A lookup table is  simply an object literal
+
 #### 3. **Move the logic outside the component.**
 
-build a library of utility functions.  
+Build a library of utility functions.  
 
 ##### 4. **Use selectors:**
 [Selectors](https://redux.js.org/usage/deriving-data-selectors) can transform the data you have into the data you need.  Selectors are most often associated with Redux but don’t require it. 
 
 ##### 5. ***Use CSS***
 
-Deep understating off css can eliminate JavaScript logic. 
+A deep understating of CSS can eliminate JavaScript logic. 
 
 #### 6. **Avoid parsing**
 
 [Use simple values](https://github.com/afrievalt/best-practices-react/blob/main/ideal.md#5-use-simple-values) that don't require parsing.  
 
+## An ideal react component has a clear separation between JavaScript and JSX.
+
+Values should be gathered and assembled at the beginning of a component.  JSX should be returned at the end of the component using the assembled values.  No JSX should appear above the return statement. Any JavaScript that can be extracted from JSX should be extracted. With less intermingling of JSX and JavaScript, you can now benefit from a "Squint Test" and detect issues faster. Refer to "Simple Made Easy" for a deeper understanding of the benefits of simplifying your code.
