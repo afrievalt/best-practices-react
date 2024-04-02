@@ -16,9 +16,8 @@ Effective standards should not merely impose constraints; they should also serve
 
 - ### [An ideal react component has minimal logic.](https://github.com/afrievalt/best-practices-react/blob/main/ideal.md#an-ideal-react-component-has-minimal-logic)
 
-- ### An ideal react component has a clear separation between JavaScript and JSX.
+- ### [An ideal react component has a clear separation between JavaScript and JSX.](https://github.com/afrievalt/best-practices-react/blob/main/ideal.md#an-ideal-react-component-has-a-clear-separation-between-javascript-and-jsx-1)
 
-[Mise en place your code](https://www.notion.so/Mise-en-place-your-code-and-make-fewer-mistakes-eeee1afc6dc64438a6cf39e70cc09b5f?pvs=21)
 Learn more coming soon.
 
 - ### An ideal react component has jsx that resembles simple html.
@@ -330,7 +329,7 @@ Many component are littered with unnecessary logic.
 
 Please note, many tips listed don’t reduce cyclomatic complexity, but reduce cognitive complexity in the component.
 
-### Tips for removing component logic.
+### Tips for removing component logic:
 
 #### 1. **Avoid empty checks:**
 
@@ -357,4 +356,15 @@ A deep understating of CSS can eliminate JavaScript logic.
 
 ## An ideal react component has a clear separation between JavaScript and JSX.
 
-Values should be gathered and assembled at the beginning of a component.  JSX should be returned at the end of the component using the assembled values.  No JSX should appear above the return statement. Any JavaScript that can be extracted from JSX should be extracted. With less intermingling of JSX and JavaScript, you can now benefit from a "Squint Test" and detect issues faster. Refer to "Simple Made Easy" for a deeper understanding of the benefits of simplifying your code.
+Values should be gathered and assembled at the beginning of a component.  JSX should be returned at the end of the component using the assembled values.  No JSX should appear above the return statement. Any JavaScript that can be extracted from JSX should be extracted. With less intermingling of JSX and JavaScript, you can now benefit from a "Squint Test" and detect issues faster. Refer to "Simple Made Easy" for a deeper understanding of the benefits of decomplexing your code.
+
+### Tips for achieving separation:
+
+#### 1. **[Mise en place your code](https://www.notion.so/Mise-en-place-your-code-and-make-fewer-mistakes-eeee1afc6dc64438a6cf39e70cc09b5f?pvs=21)**
+
+#### 2. **Don't create helper functions that return JSX.**
+Instead of creating a helper function, either create a new component or simply move JSX under the return.  I've noticed the helper function pattern often used by people coming from an object oriented background.   
+Battle scars:  I was fixing an issue in a helper function, but my change wasn't showing up.  I figured my hot reloader glitched.  Hard refresh doesn't work.  Restarting doesn't work either.  Ends up I was in the wrong JSX helper.  
+
+#### 3. ***Define event handlers outside your JSX.***
+This has an additional benefit of finding redundant code.  
