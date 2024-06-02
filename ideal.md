@@ -1,4 +1,5 @@
 # Attributes of an ideal react component.
+
 React is a powerful and flexible JavaScript library for building user interfaces. React's unopinionated nature grants app developers the freedom to enter the ecosystem seamlessly, while providing library authors the flexibility to drive innovation.
 
 The downside is developers are quickly overwhelmed with choices and suffer [JavaScript fatigue](https://auth0.com/blog/how-to-manage-javascript-fatigue/). The abundance of choices can overwhelm developers, causing them to focus on immediate needs without considering the long-term consequences. Many developers lack the confidence or political capitol to advocate for coding standards, paving the way for inconsistency and accumulating technical debt within the React application. What begins as a greenfield project can swiftly morph into a legacy burdened by soul-crushing technical debt.
@@ -17,7 +18,7 @@ Effective standards should not merely impose constraints; they should also serve
 
 - ### [An ideal react component has a clear separation between JavaScript and JSX.](https://github.com/afrievalt/best-practices-react/blob/main/ideal.md#an-ideal-react-component-has-a-clear-separation-between-javascript-and-jsx-1)
 
--  ### [An ideal react component has jsx that resembles simple html.](https://github.com/afrievalt/best-practices-react/blob/main/ideal.md#an-ideal-react-component-has-a-clear-separation-between-javascript-and-jsx-1)
+- ### [An ideal react component has jsx that resembles simple html.](https://github.com/afrievalt/best-practices-react/blob/main/ideal.md#an-ideal-react-component-has-jsx-that-resembles-simple-html-1)
 
 - ### It is fine to pragmatically violate the above rules a few times.
 
@@ -318,7 +319,7 @@ Default values allow you to increase flexibility without increasing the surface 
 
 ## An ideal react component has minimal logic.
 
-Many component are littered with unnecessary logic. 
+Many component are littered with unnecessary logic.
 
 Please note, many tips listed don’t reduce cyclomatic complexity, but reduce cognitive complexity in the component.
 
@@ -326,55 +327,59 @@ Please note, many tips listed don’t reduce cyclomatic complexity, but reduce c
 
 #### 1. **Avoid empty checks:**
 
-Many checks for empty strings or empty arrays are unnecessary because they have no effect on  what the end user will see. 
+Many checks for empty strings or empty arrays are unnecessary because they have no effect on what the end user will see.
 
 #### 2. **Use lookup tables:**
 
-Many “if then else” and “switch” statements can be replaced with lookup tables.  A lookup table is  simply an object literal
+Many “if then else” and “switch” statements can be replaced with lookup tables. A lookup table is simply an object literal
 
 #### 3. **Move the logic outside the component.**
 
-Build a library of utility functions.  
+Build a library of utility functions.
 
 ##### 4. **Use selectors:**
-[Selectors](https://redux.js.org/usage/deriving-data-selectors) can transform the data you have into the data you need.  Selectors are most often associated with Redux but don’t require it. 
 
-##### 5. ***Use CSS***
+[Selectors](https://redux.js.org/usage/deriving-data-selectors) can transform the data you have into the data you need. Selectors are most often associated with Redux but don’t require it.
 
-A deep understating of CSS can eliminate JavaScript logic. 
+##### 5. **_Use CSS_**
+
+A deep understating of CSS can eliminate JavaScript logic.
 
 #### 6. **Avoid parsing**
 
-[Use simple values](https://github.com/afrievalt/best-practices-react/blob/main/ideal.md#5-use-simple-values) that don't require parsing.  
+[Use simple values](https://github.com/afrievalt/best-practices-react/blob/main/ideal.md#5-use-simple-values) that don't require parsing.
 
 ## An ideal react component has a clear separation between JavaScript and JSX.
 
-Values should be gathered and assembled at the beginning of a component. JSX should be returned at the end of the component using the assembled values. No JSX should appear above the return statement. Any JavaScript that can be extracted from JSX should be extracted. 
+Values should be gathered and assembled at the beginning of a component. JSX should be returned at the end of the component using the assembled values. No JSX should appear above the return statement. Any JavaScript that can be extracted from JSX should be extracted.
 
-Following this pattern allows a reviewer to quickly access quality with a "Squint Test".  Flat JavaScript signals minimal complexity.  Indented JSX clarifies purpose.   Intermingled JSX and JavaScript requires a reading to mentally detangle the code.  See "Simple Made Easy" for a deeper understanding of the benefits of decomplexing your code.
+Following this pattern allows a reviewer to quickly access quality with a "Squint Test". Flat JavaScript signals minimal complexity. Indented JSX clarifies purpose. Intermingled JSX and JavaScript requires a reading to mentally detangle the code. See "Simple Made Easy" for a deeper understanding of the benefits of decomplexing your code.
 
 ### Tips for achieving separation:
 
 #### 1. **[Mise en place your code](https://www.notion.so/Mise-en-place-your-code-and-make-fewer-mistakes-eeee1afc6dc64438a6cf39e70cc09b5f?pvs=21)**
 
 #### 2. **Don't create helper functions that return JSX.**
-Instead of creating a helper function, either create a new component or simply move JSX under the return.  I've noticed the helper function pattern often used by people coming from an object oriented background.   
-Battle scars:  I was fixing an issue in a helper function, but my change wasn't showing up.  I figured my hot reloader glitched.  Hard refresh doesn't work.  Restarting doesn't work either.  Ends up I was in the wrong JSX helper.  
 
-#### 3. ***Define event handlers outside your JSX.***
-This has an additional benefit of finding redundant code.  
+Instead of creating a helper function, either create a new component or simply move JSX under the return. I've noticed the helper function pattern often used by people coming from an object oriented background.  
+Battle scars: I was fixing an issue in a helper function, but my change wasn't showing up. I figured my hot reloader glitched. Hard refresh doesn't work. Restarting doesn't work either. Ends up I was in the wrong JSX helper.
+
+#### 3. **_Define event handlers outside your JSX._**
+
+This has an additional benefit of finding redundant code.
 
 ## An ideal react component has JSX that resembles simple html.
 
 ### Tips for achieving simple JSX.
 
-#### 1. ***Avoid long classNames.***
+#### 1. **_Avoid long classNames._**
 
-One attribute of styled components I loved was the elimination of most classNames.  I've recently started using tailwind and love its speed of development.  Unfortunately it can quickly make classNames long and cumbersome to grok.  When classNames become long, consider making a new component that conveys what the complex className is doing.  Tools like cva can assist with this.
+One attribute of styled components I loved was the elimination of most classNames. I've recently started using tailwind and love its speed of development. Unfortunately it can quickly make classNames long and cumbersome to grok. When classNames become long, consider making a new component that conveys what the complex className is doing. Tools like cva can assist with this.
 
-#### 2. ***Limit JavaScript in your JSX.***
-Prepare the data needed to render your JSX outside your JSX.  Any JavaScript that can be removed from JSX should be removed from JSX.  This include event handlers, data filters, and calculations.  Acceptable exceptions include conditional rendering, mapping over data, and for performance reasons. 
+#### 2. **_Limit JavaScript in your JSX._**
 
-#### 2. ***Avoid render props.***
+Prepare the data needed to render your JSX outside your JSX. Any JavaScript that can be removed from JSX should be removed from JSX. This include event handlers, data filters, and calculations. Acceptable exceptions include conditional rendering, mapping over data, and for performance reasons.
 
-#### 3. ***Avoid dot notation in components.***
+#### 3. **_Avoid render props._**
+
+#### 4. **_Avoid dot notation in components._**
