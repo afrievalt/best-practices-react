@@ -17,13 +17,7 @@ Effective standards should not merely impose constraints; they should also serve
 
 - ### [An ideal react component has a clear separation between JavaScript and JSX.](https://github.com/afrievalt/best-practices-react/blob/main/ideal.md#an-ideal-react-component-has-a-clear-separation-between-javascript-and-jsx-1)
 
-Learn more coming soon.
-
-- ### An ideal react component has jsx that resembles simple html.
-
-- ### An ideal component is adaptable.
-
-- ### An ideal component is composable.
+-  ### [An ideal react component has jsx that resembles simple html.](https://github.com/afrievalt/best-practices-react/blob/main/ideal.md#an-ideal-react-component-has-a-clear-separation-between-javascript-and-jsx-1)
 
 - ### It is fine to pragmatically violate the above rules a few times.
 
@@ -369,3 +363,18 @@ Battle scars:  I was fixing an issue in a helper function, but my change wasn't 
 
 #### 3. ***Define event handlers outside your JSX.***
 This has an additional benefit of finding redundant code.  
+
+## An ideal react component has JSX that resembles simple html.
+
+### Tips for achieving simple JSX.
+
+#### 1. ***Avoid long classNames.***
+
+One attribute of styled components I loved was the elimination of most classNames.  I've recently started using tailwind and love its speed of development.  Unfortunately it can quickly make classNames long and cumbersome to grok.  When classNames become long, consider making a new component that conveys what the complex className is doing.  Tools like cva can assist with this.
+
+#### 2. ***Limit JavaScript in your JSX.***
+Prepare the data needed to render your JSX outside your JSX.  Any JavaScript that can be removed from JSX should be removed from JSX.  This include event handlers, data filters, and calculations.  Acceptable exceptions include conditional rendering, mapping over data, and for performance reasons. 
+
+#### 2. ***Avoid render props.***
+
+#### 3. ***Avoid dot notation in components.***
