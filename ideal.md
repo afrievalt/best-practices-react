@@ -51,7 +51,7 @@ Break down larger components into smaller ones by identifying discrete functiona
 #### 3. **Don’t repeat yourself (DRY):**
 
 ```jsx
-// ⛔ Don't repeat yourself
+// 🚫 Don't repeat yourself
 function Footer() {
   const [count, setCount] = useState();
   return (
@@ -127,17 +127,17 @@ function Footer() {
 Anything that can be removed from a component, should be removed from a component. This includes static values, unreachable code, and functions that don’t use closure.
 
 ```jsx
-// ⛔ remove static values, unreachable code, and
+// 🚫 remove static values, unreachable code, and
 //   functions without closure
 function Strange({ headCount }) {
-  const MAX_CAPACITY = 250; // ⛔ static value
+  const MAX_CAPACITY = 250; // 🚫 static value
   const getIsOverCapacity = (count) => {
-    // ⛔ function without closure
+    // 🚫 function without closure
     MAX_CAPACITY > count;
   };
   const isOverCapacity = getIsOverCapacity(headCount);
   if (isOverCapacity && headCount === 7) {
-    return <div>strange</div>; // ⛔ unreachable code
+    return <div>strange</div>; // 🚫 unreachable code
   }
 
   return <NumberDisplay value={headCount} error={isOverCapacity} />;
@@ -238,7 +238,7 @@ There is a plethora of [blogs on this topic](https://www.freecodecamp.org/news/a
 #### 2. **Use composition and the children prop:**
 
 ```jsx
-// ⛔ icon, iconPosition, and label are
+// 🚫 icon, iconPosition, and label are
 // increasing surface area
 function Button({ icon, iconPosition, label, ...rest }) {
   return (
@@ -247,7 +247,7 @@ function Button({ icon, iconPosition, label, ...rest }) {
       {label}
       {iconPosition === "right" && <Icon type={icon} />}
     </StyledButton>
-  ); // ⛔ iconPosition is also adding logic
+  ); // 🚫 iconPosition is also adding logic
 }
 
 function Footer() {
@@ -353,7 +353,7 @@ A deep understanding of CSS can eliminate JavaScript logic.
 
 Values should be gathered and assembled at the beginning of a component. JSX should be returned at the end of the component using the assembled values. No JSX should appear above the return statement. Any JavaScript that can be extracted from JSX should be extracted.
 
-Following this pattern allows a reviewer to quickly access quality with a "Squint Test". Flat JavaScript signals minimal complexity. Indented JSX clarifies purpose. Intermingled JSX and JavaScript requires a reading to mentally detangle the code. See "Simple Made Easy" for a deeper understanding of the benefits of decomplexing your code.
+Following this pattern allows a reviewer to quickly access quality with a "[Squint Test](https://frontendatscale.com/issues/6/)". [Flat JavaScript](https://www.youtube.com/watch?v=CFRhGnuXG-4) signals minimal complexity. Nested JSX clarifies the parent child relationship. Intermingled JSX and JavaScript requires a reading to mentally detangle the code. See "[Simple Made Easy](https://www.youtube.com/watch?v=SxdOUGdseq4https://www.youtube.com/watch?v=SxdOUGdseq4https://www.youtube.com/watch?v=SxdOUGdseq4https://www.youtube.com/watch?v=SxdOUGdseq4https://www.youtube.com/watch?v=SxdOUGdseq4)" for a deeper understanding of the benefits of decomplexing your code.
 
 ### Tips for achieving separation:
 
@@ -364,22 +364,30 @@ Following this pattern allows a reviewer to quickly access quality with a "Squin
 Instead of creating a helper function, either create a new component or simply move JSX under the return. I've noticed the helper function pattern often used by people coming from an object oriented background.  
 Battle scars: I was fixing an issue in a helper function, but my change wasn't showing up. I figured my hot reloader glitched. Hard refresh doesn't work. Restarting doesn't work either. Ends up I was in the wrong JSX helper.
 
-#### 3. **_Define event handlers outside your JSX._**
+#### 3. **Define event handlers outside your JSX.**
 
 This has an additional benefit of finding redundant code.
 
 ## An ideal react component has JSX that resembles simple html.
+The JSX will convey a ton about your component especially when you keep it simple.  If a picture is worth 1000 words, your JSX is worth at least 100.  
 
 ### Tips for achieving simple JSX.
 
-#### 1. **_Avoid long classNames._**
+#### 1. **Avoid long classNames.**
 
 One attribute of styled components I loved was the elimination of most classNames. I've recently started using tailwind and love its speed of development. Unfortunately it can quickly make classNames long and cumbersome to grok. When classNames become long, consider making a new component that conveys what the complex className is doing. Tools like cva can assist with this.
 
-#### 2. **_Limit JavaScript in your JSX._**
+#### 2. **Limit JavaScript in your JSX.**
 
 Prepare the data needed to render your JSX outside your JSX. Any JavaScript that can be removed from JSX should be removed from JSX. This include event handlers, data filters, and calculations. Acceptable exceptions include conditional rendering, mapping over data, and for performance reasons.
 
-#### 3. **_Avoid render props._**
+#### 3. **Avoid render props.**
+Render props break the clarity of the parent child hierarchy.  See [When to NOT use Render Props](https://kentcdodds.com/blog/when-to-not-use-render-props)
 
-#### 4. **_Avoid dot notation in components._**
+#### 4. **Avoid dot notation in components.**
+```jsx
+// 🚫 Avoid dot notation
+<Card.Wrapper>
+  <Card.Body />
+</Card.Wrapper>
+```
