@@ -343,7 +343,7 @@ Build a library of utility functions.
 
 ##### 5. **_Use CSS_**
 
-A deep understating of CSS can eliminate JavaScript logic.
+A deep understanding of CSS can eliminate JavaScript logic.
 
 #### 6. **Avoid parsing**
 
