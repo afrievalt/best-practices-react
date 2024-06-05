@@ -353,6 +353,12 @@ A deep understanding of CSS can eliminate JavaScript logic.
 
 Values should be gathered and assembled at the beginning of a component. JSX should be returned at the end of the component using the assembled values. No JSX should appear above the return statement. Any JavaScript that can be extracted from JSX should be extracted.
 
+<div>
+    <img src="./assets/clear-separation.png" 
+    alt="Poker Atlas Image" width="399"/> 
+    Poker Atlas
+</div>
+
 Following this pattern allows a reviewer to quickly access quality with a "[Squint Test](https://frontendatscale.com/issues/6/)". [Flat JavaScript](https://www.youtube.com/watch?v=CFRhGnuXG-4) signals minimal complexity. Nested JSX clarifies the parent child relationship. Intermingled JSX and JavaScript requires a reading to mentally detangle the code. See "[Simple Made Easy](https://www.youtube.com/watch?v=SxdOUGdseq4https://www.youtube.com/watch?v=SxdOUGdseq4https://www.youtube.com/watch?v=SxdOUGdseq4https://www.youtube.com/watch?v=SxdOUGdseq4https://www.youtube.com/watch?v=SxdOUGdseq4)" for a deeper understanding of the benefits of decomplexing your code.
 
 ### Tips for achieving separation:
