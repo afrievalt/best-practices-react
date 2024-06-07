@@ -355,8 +355,7 @@ Values should be gathered and assembled at the beginning of a component. JSX sho
 
 <div>
     <img src="./assets/clear-separation.png" 
-    alt="Poker Atlas Image" width="399"/> 
-    Poker Atlas
+    alt="Clear Separation Code" width="540"/>     
 </div>
 
 Following this pattern allows a reviewer to quickly access quality with a "[Squint Test](https://frontendatscale.com/issues/6/)". [Flat JavaScript](https://www.youtube.com/watch?v=CFRhGnuXG-4) signals minimal complexity. Nested JSX clarifies the parent child relationship. Intermingled JSX and JavaScript requires a reading to mentally detangle the code. See "[Simple Made Easy](https://www.youtube.com/watch?v=SxdOUGdseq4https://www.youtube.com/watch?v=SxdOUGdseq4https://www.youtube.com/watch?v=SxdOUGdseq4https://www.youtube.com/watch?v=SxdOUGdseq4https://www.youtube.com/watch?v=SxdOUGdseq4)" for a deeper understanding of the benefits of decomplexing your code.
@@ -385,7 +384,7 @@ One attribute of styled components I loved was the elimination of most className
 
 #### 2. **Limit JavaScript in your JSX.**
 
-Prepare the data needed to render your JSX outside your JSX. Any JavaScript that can be removed from JSX should be removed from JSX. This include event handlers, data filters, and calculations. Acceptable exceptions include conditional rendering, mapping over data, and for performance reasons.
+Prepare the data needed to render your JSX outside your JSX. Any JavaScript that can be extracted from JSX should be extracted.  This includes event handlers, data filters, and calculations. Acceptable exceptions include conditional rendering, mapping over data, and to improve performance.
 
 #### 3. **Avoid render props.**
 Render props break the clarity of the parent child hierarchy.  See [When to NOT use Render Props](https://kentcdodds.com/blog/when-to-not-use-render-props)
