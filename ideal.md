@@ -349,6 +349,8 @@ return (
   </div>
 );
 ```
+A careful reader will notice that many code snippets are not equivalent. This is intentional to emphasize the concept.
+
 #### 2. **Use lookup tables:**
 
 Many “if then else” and “switch” statements can be replaced with lookup tables. A lookup table is simply an object literal
@@ -383,7 +385,7 @@ export default function EmployeeType({ code }) {
   return (<span>{employeeType}</span>)
 }
 ```
-A careful reader will notice that many code snippets are not equivalent. This is intentional to emphasize the concept.
+
 
 #### 3. **Move the logic outside the component.**
 
@@ -393,9 +395,25 @@ Build a library of utility functions.
 
 [Selectors](https://redux.js.org/usage/deriving-data-selectors) can transform the data you have into the data you need. Selectors are most often associated with Redux but don’t require it.
 
-##### 5. **_Use CSS_**
+##### 5. **Use CSS**
 
-A deep understanding of CSS can eliminate JavaScript logic.
+A deep understanding of CSS can reduce JavaScript logic.
+
+```css
+/* ✅ handel empty state with css */
+td {
+  padding: 1ch;
+  border: 2px solid #90a4ae;
+  &:empty {
+    background: #e53935;
+    &::before {
+      content: "full";
+      color: white;
+    }
+  }
+}
+```
+From css tricks.  [See full demo.](https://css-tricks.com/almanac/selectors/e/empty/)
 
 #### 6. **Avoid parsing**
 
