@@ -10,11 +10,11 @@ Effective standards should not merely impose constraints; they should also serve
 
 ## Attributes of an ideal react component:
 
-- ### [An ideal react component is too small to fail](https://github.com/afrievalt/best-practices-react/blob/main/ideal.md#an-ideal-component-has-minimal-surface-area)
+- ### [An ideal react component is too small to fail](https://github.com/afrievalt/best-practices-react/blob/main/ideal.md#an-ideal-react-component-is-too-small-to-fail-1)
 
 - ### [An ideal react component has a minimal surface area.](https://github.com/afrievalt/best-practices-react/blob/main/ideal.md#an-ideal-component-has-minimal-surface-area)
 
-- ### [An ideal react component has minimal logic.](https://github.com/afrievalt/best-practices-react/blob/main/ideal.md#an-ideal-react-component-has-minimal-logic)
+- ### [An ideal react component has minimal logic.](https://github.com/afrievalt/best-practices-react/blob/main/ideal.md#an-ideal-react-component-has-minimal-logic-1)
 
 - ### [An ideal react component has a clear separation between JavaScript and JSX.](https://github.com/afrievalt/best-practices-react/blob/main/ideal.md#an-ideal-react-component-has-a-clear-separation-between-javascript-and-jsx-1)
 
@@ -51,7 +51,7 @@ Break down larger components into smaller ones by identifying discrete functiona
 #### 3. **Don’t repeat yourself (DRY):**
 
 ```jsx
-// 🚫 Don't repeat yourself
+// ⛔ Don't repeat yourself
 function Footer() {
   const [count, setCount] = useState();
   return (
@@ -127,17 +127,17 @@ function Footer() {
 Anything that can be removed from a component, should be removed from a component. This includes static values, unreachable code, and functions that don’t use closure.
 
 ```jsx
-// 🚫 remove static values, unreachable code, and
+// ⛔ remove static values, unreachable code, and
 //   functions without closure
 function Strange({ headCount }) {
-  const MAX_CAPACITY = 250; // 🚫 static value
+  const MAX_CAPACITY = 250; // ⛔ static value
   const getIsOverCapacity = (count) => {
-    // 🚫 function without closure
+    // ⛔ function without closure
     MAX_CAPACITY > count;
   };
   const isOverCapacity = getIsOverCapacity(headCount);
   if (isOverCapacity && headCount === 7) {
-    return <div>strange</div>; // 🚫 unreachable code
+    return <div>strange</div>; // ⛔ unreachable code
   }
 
   return <NumberDisplay value={headCount} error={isOverCapacity} />;
@@ -238,7 +238,7 @@ There is a plethora of [blogs on this topic](https://www.freecodecamp.org/news/a
 #### 2. **Use composition and the children prop:**
 
 ```jsx
-// 🚫 icon, iconPosition, and label are
+// ⛔ icon, iconPosition, and label are
 // increasing surface area
 function Button({ icon, iconPosition, label, ...rest }) {
   return (
@@ -247,7 +247,7 @@ function Button({ icon, iconPosition, label, ...rest }) {
       {label}
       {iconPosition === "right" && <Icon type={icon} />}
     </StyledButton>
-  ); // 🚫 iconPosition is also adding logic
+  ); // ⛔ iconPosition is also adding logic
 }
 
 function Footer() {
@@ -297,7 +297,7 @@ Prefer props with simple, primitive values. Avoid parsing. It is easier to compo
 function Size(props) {
   const { dimensions } = props;
   // dimensions = 12"x18" or 1'x1.5'
-  // 🚫 Avoid Parsing
+  // ⛔ Avoid Parsing
   const [width, height] = dimensions.split("x");
   const unitSymbol = width.at(-1);
   const unit = unitLookup[unitSymbol];
@@ -328,7 +328,27 @@ Please note, many tips listed don’t reduce cyclomatic complexity, but reduce c
 #### 1. **Avoid empty checks:**
 
 Many checks for empty strings or empty arrays are unnecessary because they have no effect on what the end user will see.
+```jsx
+{/*  ⛔ Avoid empty checks  */}
+{title && <h1>{title}</h1>}
+{files &&
+  files.length > 0 &&
+  files.map((file) => <FileDetails file={file} key={file.id} />)}
+```
 
+```jsx
+const { files = [] } = props;
+  return (
+    <div>
+      {/* ✅ Allow an empty header  */}
+      {<h1>{title}</h1>}
+      {/* ✅ An empty array will render nothing  */}
+      {files.map((file) => (
+        <FileDetails file={file} key={file.id} />
+      ))}
+    </div>
+  );
+```
 #### 2. **Use lookup tables:**
 
 Many “if then else” and “switch” statements can be replaced with lookup tables. A lookup table is simply an object literal
@@ -358,7 +378,7 @@ Values should be gathered and assembled at the beginning of a component. JSX sho
     alt="Clear Separation Code" width="540"/>     
 </div>
 
-Following this pattern allows a reviewer to quickly access quality with a "[Squint Test](https://frontendatscale.com/issues/6/)". [Flat JavaScript](https://www.youtube.com/watch?v=CFRhGnuXG-4) signals minimal complexity. Nested JSX clarifies the parent child relationship. Intermingled JSX and JavaScript requires a reading to mentally detangle the code. See "[Simple Made Easy](https://www.youtube.com/watch?v=SxdOUGdseq4https://www.youtube.com/watch?v=SxdOUGdseq4https://www.youtube.com/watch?v=SxdOUGdseq4https://www.youtube.com/watch?v=SxdOUGdseq4https://www.youtube.com/watch?v=SxdOUGdseq4)" for a deeper understanding of the benefits of decomplexing your code.
+Following this pattern allows a reviewer to quickly assess quality with a "[Squint Test](https://frontendatscale.com/issues/6/)". [Flat JavaScript](https://www.youtube.com/watch?v=CFRhGnuXG-4) signals minimal complexity. Nested JSX clarifies the parent child relationship. Intermingled JSX and JavaScript requires a reader to mentally untangle the code. See "[Simple Made Easy](https://www.youtube.com/watch?v=SxdOUGdseq4https://www.youtube.com/watch?v=SxdOUGdseq4https://www.youtube.com/watch?v=SxdOUGdseq4https://www.youtube.com/watch?v=SxdOUGdseq4https://www.youtube.com/watch?v=SxdOUGdseq4)" for a deeper understanding of the benefits of decomplexing your code.
 
 ### Tips for achieving separation:
 
@@ -391,7 +411,7 @@ Render props break the clarity of the parent child hierarchy.  See [When to NOT 
 
 #### 4. **Avoid dot notation in components.**
 ```jsx
-// 🚫 Avoid dot notation
+// ⛔ Avoid dot notation
 <Card.Wrapper>
   <Card.Body />
 </Card.Wrapper>
