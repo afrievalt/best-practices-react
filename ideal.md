@@ -338,20 +338,52 @@ Many checks for empty strings or empty arrays are unnecessary because they have 
 
 ```jsx
 const { files = [] } = props;
-  return (
-    <div>
-      {/* ✅ Allow an empty header  */}
-      {<h1>{title}</h1>}
-      {/* ✅ An empty array will render nothing  */}
-      {files.map((file) => (
-        <FileDetails file={file} key={file.id} />
-      ))}
-    </div>
-  );
+return (
+  <div>
+    {/* ✅ Allow an empty header  */}
+    <h1>{title}</h1>
+    {/* ✅ An empty array will render nothing  */}
+    {files.map((file) => (
+      <FileDetails file={file} key={file.id} />
+    ))}
+  </div>
+);
 ```
 #### 2. **Use lookup tables:**
 
 Many “if then else” and “switch” statements can be replaced with lookup tables. A lookup table is simply an object literal
+```jsx
+{// ⛔ Replace switch like statements with lookup tables
+employeeType === '001' &&  
+  <span>Full Time</span>
+}
+{employeeType === '002' && 
+  <span>Part Time</span>
+}
+{employeeType === '010' && 
+  <span>Full Time (Retired)</span>
+}
+{employeeType === '020' && 
+  <span>Full Time (On Leave)</span>
+}      
+```
+
+```jsx
+const employeeTypeLookup = {
+  '001': "Full Time",
+  '002': "Part Time",
+  '010': "Full Time (Retired)",
+  '020': "Full Time (On Leave)",      
+} 
+
+export default function EmployeeType({ code }) {  
+  // ✅ Use Lookup Tables
+  const employeeType = employeeTypeLookup[code]
+
+  return (<span>{employeeType}</span>)
+}
+```
+A careful reader will notice that many code snippets are not equivalent. This is intentional to emphasize the concept.
 
 #### 3. **Move the logic outside the component.**
 
@@ -394,7 +426,7 @@ Battle scars: I was fixing an issue in a helper function, but my change wasn't s
 This has an additional benefit of finding redundant code.
 
 ## An ideal react component has JSX that resembles simple html.
-The JSX will convey a ton about your component especially when you keep it simple.  If a picture is worth 1000 words, your JSX is worth at least 100.  
+The JSX will convey a ton about your component especially when you keep it simple.  If a picture is worth 1000 words, your JSX is worth at least 100.  Don't cloud that picture.
 
 ### Tips for achieving simple JSX.
 
