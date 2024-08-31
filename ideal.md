@@ -432,7 +432,7 @@ Following this pattern allows a reviewer to quickly assess quality with a "[Squi
 
 ### Tips for achieving separation:
 
-#### 1. **[Mise en place your code](https://www.notion.so/Mise-en-place-your-code-and-make-fewer-mistakes-eeee1afc6dc64438a6cf39e70cc09b5f?pvs=21)**
+#### 1. **[Mise en place your code](https://daisy-saturnalia-81c.notion.site/Mise-en-place-your-code-and-make-fewer-mistakes-eeee1afc6dc64438a6cf39e70cc09b5f)**
 
 #### 2. **Don't create helper functions that return JSX.**
 
