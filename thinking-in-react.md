@@ -24,3 +24,28 @@ flowchart TD
 
 %% You can add notes with two "%" signs in a row!
 ```
+
+# Step 2:
+<img src="./assets/draw-owl.webp" 
+    alt="how to draw an owl" width="540"/>  
+
+
+```jsx
+function ProductTable({ products }) {
+  return (
+    <table>
+      <thead>
+        <tr>
+          <th>Names</th>
+          <th>Price</th>
+        </tr>
+      </thead>
+      <tbody>
+        <ProductCategoryRow category="category"/>
+        <ProductRow product={{price: "$1", stocked: true, name: "In Stock"}}/>
+        <ProductRow product={{price: "$2", name: "Out Stock"}}/>
+      </tbody>
+    </table>
+  );
+}
+```
