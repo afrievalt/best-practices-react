@@ -1,29 +1,66 @@
+# Alt Thinking
+## How we thought about frontend dev before react:
+
+#### Separation on concerns before 2015: 
+  * JS
+  * CSS
+  * HTML
+
+React is a paradime shift and combined these technologies.  
+
+#### Patterns before 2015:
+  * MVC
+  *  MVP
+  *  MVVM
+
+
+#### React:
+  * UI = f(s)  
+    OR
+  * UI = reactFunction(state)
+
+#### Client side dominated by jQuery ([Audacity](https://thisdeveloperslife.com/post/1-0-7-audacity)) 
+*  Set up event listeners
+*  Find element(s) in the DOM
+*  Looping through results to update.
+*  Poking the dom thinking
+
+**Problems** 
+* Managing listeners has foot guns similar to manual memory management.  
+* Slow at scale 
+* Lowered the bar for development 
+  * => spaghetti code
+  * => Lack of JS fundamentals  
+
+# Transition to react requires a different type of thinking.
+This article made it click.
+
+## Step 1:
+[Atomic Design](https://bradfrost.com/blog/post/atomic-web-design/)
+<img src="./assets/atomic-design-process.png" 
+    alt="how to draw an owl" width="540"/>  
+
+Avoid analysis paralysis
+
 ```mermaid
 flowchart TD
 %% Nodes
-    A("fab:fa-youtube <a rel="noopener" href="https://www.youtube.com/watch?v=T5Zthq-QR2A&amp" target="_blank">Starter Guide</a>")
-    B("fab:fa-youtube <a rel="noopener" href="https://www.youtube.com/watch?v=rfQ_yGJ8QAQ&amp" target="_blank">Make Flowchart</a>")
-    C("fa:fa-book-open <a rel="noopener" href="https://mermaid.js.org/syntax/flowchart.html" target="_blank">Learn More</a>")
-    D{"Use the editor"}
-    E(fa:fa-shapes Visual Editor)
-    F("fa:fa-chevron-up Add node in toolbar")
-    G("fa:fa-comment-dots AI chat")
-    H("fa:fa-arrow-left Open AI in side menu")
-    I("fa:fa-code Text")
-    J(fa:fa-arrow-left Type Mermaid syntax)
-
+    A("FilterableProductTable")
+    B("SearchBar")
+    C("ProductTable")
+    D("Use the editor")
+    E("ProductCategoryRow")
+    F("ProductRow")
+    
 %% Edge connections between nodes
-    A --> B --> C --> D -- Build and Design --> E --> F
-    D -- Use AI --> G --> H
-    D -- Mermaid js --> I --> J
-
-%% Individual node styling. Try the visual editor toolbar for easier styling!
-    style E color:#FFFFFF, fill:#AA00FF, stroke:#AA00FF
-    style G color:#FFFFFF, stroke:#00C853, fill:#00C853
-    style I color:#FFFFFF, stroke:#2962FF, fill:#2962FF
-
-%% You can add notes with two "%" signs in a row!
+    A --> B 
+    A --> C 
+    C --> D 
+    C --> E 
+    
 ```
+
+(https://react.dev/learn/understanding-your-ui-as-a-tree)
 
 # Step 2:
 <img src="./assets/draw-owl.webp" 
