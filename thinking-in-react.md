@@ -8,13 +8,13 @@
 
 React is a paradime shift and combined these technologies.  
 
-#### Patterns before 2015:
+#### Patterns before 2015 (OOP):
   * MVC
   *  MVP
   *  MVVM
 
 
-#### React:
+#### React (functional):
   * UI = f(s)  
     OR
   * UI = reactFunction(state)
@@ -32,11 +32,12 @@ React is a paradime shift and combined these technologies.
   * => spaghetti code
   * => Lack of JS fundamentals  
 
-# Transition to react requires a different type of thinking.
-This article made it click.
+# Transitioning to react requires a different type of thinking.
+This article makes it click.
 
 ## Step 1:
 [Atomic Design](https://bradfrost.com/blog/post/atomic-web-design/)
+
 <img src="./assets/atomic-design-process.png" 
     alt="how to draw an owl" width="540"/>  
 
@@ -48,9 +49,8 @@ flowchart TD
     A("FilterableProductTable")
     B("SearchBar")
     C("ProductTable")
-    D("Use the editor")
-    E("ProductCategoryRow")
-    F("ProductRow")
+    D("ProductCategoryRow")
+    E("ProductRow")
     
 %% Edge connections between nodes
     A --> B 
@@ -62,7 +62,7 @@ flowchart TD
 
 (https://react.dev/learn/understanding-your-ui-as-a-tree)
 
-# Step 2:
+## Step 2:
 <img src="./assets/draw-owl.webp" 
     alt="how to draw an owl" width="540"/>  
 
@@ -79,10 +79,20 @@ function ProductTable({ products }) {
       </thead>
       <tbody>
         <ProductCategoryRow category="category"/>
-        <ProductRow product={{price: "$1", stocked: true, name: "In Stock"}}/>
-        <ProductRow product={{price: "$2", name: "Out Stock"}}/>
+        <ProductRow product={PRODUCTS[0]}/>
+        <ProductRow product={PRODUCTS[2]}/>
       </tbody>
     </table>
   );
 }
 ```
+
+## Step 3:
+UI = f(s)  
+
+# Next steps 
+
+Test if you got this.
+
+<img src="./assets/change.png" 
+    alt="how to draw an owl" width="540"/>  
