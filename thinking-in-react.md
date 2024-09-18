@@ -1,3 +1,27 @@
+
+<img src="./assets/rethink-best.png" 
+    alt="how to draw an owl" width="540"/>  
+
+If you don't adjust your thinking, you are going to struggle in react.  
+
+# About Me
+Andy Frievalt
+
+* 3 decades of frontend software development.
+* 8 years of react experience
+* ~~Expert~~ A lot of battle scars
+* Many experiences where I am confused, then something clicks and NOW i just get it.
+
+# This Talk
+Goal of this talk: Share that Click
+
+* compare and contrast past thinking
+* go over "Thinking in react" with my interjections
+* Do a little Code Kata
+* How I would solve it. 
+
+To get the most from this, have the docs up to follow along.
+
 # Alt Thinking
 ## How we thought about frontend dev before react:
 
@@ -18,6 +42,13 @@ React is a paradime shift and combined these technologies.
   * UI = f(s)  
     OR
   * UI = reactFunction(state)
+  
+#### opinionated vs unopinionated 
+ * Opinionated: one way to do things - Rales/Java/Angular (opinionated)
+ * React is unopinionated: No one way to do things => more disagreements
+  
+Opinions are mine, if you don't like them, I have others.
+
 
 #### Client side dominated by jQuery ([Audacity](https://thisdeveloperslife.com/post/1-0-7-audacity)) 
 *  Set up event listeners
@@ -88,7 +119,11 @@ function ProductTable({ products }) {
 ```
 
 ## Step 3:
-UI = f(s)  
+* Keep an eye out for derived state.  
+* Don't think about updating the screen (poking the dom)
+* Actions change state
+* UI = f(s) 
+* If it is hard to update state, you likely don't have min state
 
 # Next steps 
 

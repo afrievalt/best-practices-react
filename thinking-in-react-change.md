@@ -9,6 +9,8 @@
 4. Prop drilling
 5. Surface area
 6. Failed usability test
+
+### First make the change easy, then make the easy change
    
 ```mermaid
 flowchart TD
