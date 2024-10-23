@@ -29,14 +29,6 @@ function ProductCategoryRow({ category }) {
   );
 }
 
-function EmptyRow({ category }) {
-  return (
-    <tr>
-      <th colSpan="2">No Matching {category}</th>
-    </tr>
-  );
-}
-
 function ProductRow({ product }) {
   const name = product.stocked ? (
     product.name
@@ -55,39 +47,25 @@ function ProductRow({ product }) {
 function ProductTable({ products, filterText, inStockOnly }) {
   const rows = [];
   let lastCategory = null;
-  let i;
 
   products.forEach((product) => {
-    if (product.category !== lastCategory) {
-      if (i === 0) {
-        rows.push(
-          <EmptyRow category={lastCategory} key={`empty${lastCategory}`} />
-        );
-      }
-      rows.push(
-        <ProductCategoryRow
-          category={product.category}
-          key={product.category}
-        />
-      );
-      lastCategory = product.category;
-      i = 0;
-    }
     if (product.name.toLowerCase().indexOf(filterText.toLowerCase()) === -1) {
       return;
     }
     if (inStockOnly && !product.stocked) {
       return;
     }
-
+    if (product.category !== lastCategory) {
+      rows.push(
+        <ProductCategoryRow
+          category={product.category}
+          key={product.category}
+        />
+      );
+    }
     rows.push(<ProductRow product={product} key={product.name} />);
-    ++i;
+    lastCategory = product.category;
   });
-  if (i === 0) {
-    rows.push(
-      <EmptyRow category={lastCategory} key={`empty${lastCategory}`} />
-    );
-  }
 
   return (
     <table>
